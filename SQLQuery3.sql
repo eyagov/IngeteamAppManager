@@ -1,0 +1,1 @@
+﻿insert into Task([name],[description], [state], [time], [close], [start], TaskParentId, ProgrammerId) values ('Task004','Nothing special.','New', 52, '2020-08-10 22:01:00', '2020-08-10 22:01:00' , NULL, 2)
