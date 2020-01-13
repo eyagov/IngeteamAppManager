@@ -14,43 +14,16 @@ using System.Windows.Media.Imaging;
 
 namespace IngeteamApp.VIEWMODEL
 {
-    public class State
-    {
-        private int _index;
-        public int Index
-        {
-            get { return _index; }
-            set { _index = value; }
-        }
-        private string _content;
-        public string Content
-        {
-            get { return _content; }
-            set { _content = value; }
-        }
-
-        public State (int ind, string cont)
-        {
-            Index = ind;
-            Content = cont;
-        }
-        
-    }
-
-
+         
     public class TaskViewModel : IGeneric
     {
+        public static bool IsWindowOpen<T>(string name = "") where T : Window
+{
+    return string.IsNullOrEmpty(name)
+       ? Application.Current.Windows.OfType<T>().Any()
+       : Application.Current.Windows.OfType<T>().Any(w => w.Name.Equals(name));
+}
         #region TASK PART
-
-        /*public ObservableCollection<State> StatesList = new ObservableCollection<State>()
-        {
-            new State (0,"New"),
-            new State (1,"Resolved"),
-            new State (2,"InProgress"),
-            new State (3,"Feedback"),
-            new State (4,"Closed")
-
-        };*/
 
         private ObservableCollection<string> _statesList = new ObservableCollection<string>() { "New", "Resolved", "In Progress", "Feedback", "Closed"};
         public ObservableCollection<string> StatesList
@@ -67,7 +40,7 @@ namespace IngeteamApp.VIEWMODEL
         }
 
 
-        private static bool _disableTaskViewer = true;//It is needed one unique unique value shared by windows, si it must be static.
+        private static bool _disableTaskViewer = false;//It is needed one unique unique value shared by windows, si it must be static.
         private bool DisableTaskViewer
         {
             get { return _disableTaskViewer; }
@@ -245,7 +218,7 @@ namespace IngeteamApp.VIEWMODEL
             get
             {
                 if (_showTasksCommand == null)
-                    _showTasksCommand = new RelayCommand(new Action(LoadTasks), () => DisableTaskViewer);
+                    _showTasksCommand = new RelayCommand(new Action(LoadTasks), () => !IsWindowOpen<Window>("SubTasksViewerW"));
                 return _showTasksCommand;
             }
         }
@@ -257,7 +230,7 @@ namespace IngeteamApp.VIEWMODEL
             get
             {
                 if (_removeTasksCommand == null)
-                    _removeTasksCommand = new RelayCommand(new Action(RemoveTask), () => (somethingSelected & DisableTaskViewer));
+                    _removeTasksCommand = new RelayCommand(new Action(RemoveTask), () => (somethingSelected & !IsWindowOpen<Window>("SubTasksViewerW")));
                 return _removeTasksCommand;
             }
         }
@@ -269,7 +242,7 @@ namespace IngeteamApp.VIEWMODEL
             get
             {
                 if (_clearCommand == null)
-                    _clearCommand = new RelayCommand(new Action(ClearCurrent), () => DisableTaskViewer);
+                    _clearCommand = new RelayCommand(new Action(ClearCurrent), () => !IsWindowOpen<Window>("SubTasksViewerW"));
                 return _clearCommand;
             }
         }
@@ -280,7 +253,7 @@ namespace IngeteamApp.VIEWMODEL
             get
             {
                 if (_modifyCommand == null)
-                    _modifyCommand = new RelayCommand(new Action(ModifyCurrentTask), () => (somethingSelected  & DisableTaskViewer));
+                    _modifyCommand = new RelayCommand(new Action(ModifyCurrentTask), () => (somethingSelected  & !IsWindowOpen<Window>("SubTasksViewerW")));
                 return _modifyCommand;
             }
         }
@@ -291,7 +264,7 @@ namespace IngeteamApp.VIEWMODEL
             get
             {
                 if (_addTasksCommand == null)
-                    _addTasksCommand = new RelayCommand(new Action(AddTask), () => DisableTaskViewer);
+                    _addTasksCommand = new RelayCommand(new Action(AddTask), () => !IsWindowOpen<Window>("SubTasksViewerW"));
                 return _addTasksCommand;
             }
         }
@@ -380,7 +353,7 @@ namespace IngeteamApp.VIEWMODEL
             get { return CurrentSubTask != null; }
         }
 
-        private static SubTasksViewer _stv = new SubTasksViewer();
+        private static SubTasksViewer _stv;
 
         private int? _subCurrentParentId;
         public int? SubCurrentParentId
@@ -543,7 +516,7 @@ namespace IngeteamApp.VIEWMODEL
             get
             {
                 if (_removeSubTasksCommand == null)
-                    _removeSubTasksCommand = new RelayCommand(new Action(RemoveSubTask), () => subSomethingSelected );
+                    _removeSubTasksCommand = new RelayCommand(new Action(RemoveSubTask), () => subSomethingSelected);
                 return _removeSubTasksCommand;
             }
         }
@@ -566,7 +539,7 @@ namespace IngeteamApp.VIEWMODEL
             get
             {
                 if (_openSubTasksCommand == null)
-                    _openSubTasksCommand = new RelayCommand(new Action(ActivateSubtasks), () => (somethingSelected & DisableTaskViewer));
+                    _openSubTasksCommand = new RelayCommand(new Action(ActivateSubtasks), () => (somethingSelected & !IsWindowOpen<Window>("SubTasksViewerW")));
                 return _openSubTasksCommand;
             }
         }

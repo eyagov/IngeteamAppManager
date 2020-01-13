@@ -19,6 +19,7 @@ namespace IngeteamApp.VIEW
     /// </summary>
     public partial class TasksViewer : Window
     {
+
         public TasksViewer()
         {
             InitializeComponent();
