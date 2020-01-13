@@ -1,4 +1,4 @@
-﻿<Window x:Class="IngeteamApp.VIEW.TasksViewer"
+﻿<Window x:Class="IngeteamApp.VIEW.SubTasksViewer"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,7 +11,7 @@
         mc:Ignorable="d"
         Icon="C:\Users\Eduardo\source\repos\IngeteamApp - Copy (2)\IngeteamApp\Resources\IngeIco.ico"
         
-        Title="Tasks Manager"  Height="600" Width="900">
+        Title="SubTasks Manager" Height="600" Width="900">
     <Window.Resources>
         <vm:TaskViewModel x:Key="TaskVM"/>
     </Window.Resources>
@@ -47,34 +47,33 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <ListBox ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="5" ItemsSource="{Binding ListTasks}" SelectedItem="{Binding CurrentTask}"/>
-        <Button Command="{Binding ShowTasksCommand}" Grid.Column="6" Grid.Row="2" Content="Show Records"/>
-        <Button Command="{Binding RemoveTasksCommand}" Grid.Column="6" Grid.Row="4" Content="Delete Selected"/>
-        <Button Grid.Column="6"  Grid.Row="10" Content="Add New" Margin="0,10" Command="{Binding AddTasksCommand}"/>
-        <Button Grid.Column="6" Grid.Row="9" Content="Clear" Margin="0,10" Command="{Binding ClearCommand}"/>
-        <Button Grid.Column="6" Grid.Row="6" Content="Subtasks" Margin="0,10" Command="{Binding OpenSubTasksCommand}"/>
-        <Button Grid.Column="6" Grid.Row="11" Content="Modify Current" Margin="0,10" Command="{Binding ModifyCommand}"/>
-        <Button Grid.Column="6" Grid.Row="13" Margin="0,10" Content="Close" Click="Button_Click" MaxHeight="20"/>
-        <Label Grid.Column="1" Grid.Row="7" Content="(*)Name:" Margin="0,10,0,10"/>
+        <ListBox ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="5" ItemsSource="{Binding ListSubTasks}" SelectedItem="{Binding CurrentSubTask}"/>
+        <Button Command="{Binding ShowSubTasksCommand}" Grid.Column="6" Grid.Row="2" Content="Show Records"/>
+        <Button Command="{Binding RemoveSubTasksCommand}" Grid.Column="6" Grid.Row="4" Content="Delete Selected"/>
+        <Button Grid.Column="6"  Grid.Row="10" Content="Add New" Margin="0,10" Command="{Binding AddSubTasksCommand}"/>
+        <Button Grid.Column="6" Grid.Row="9" Content="Clear" Margin="0,10" Command="{Binding SubClearCommand}"/>
+        <Button Grid.Column="6" Grid.Row="11" Content="Modify Current" Margin="0,10" Command="{Binding SubModifyCommand}"/>
+        <Button Grid.Column="6" Grid.Row="13" Margin="0,10" Content="Back" Command="{Binding CloseSubTasksCommand}" MaxHeight="20"/>
+        <Label Grid.Column="1" Grid.Row="7" Content="Name:" Margin="0,10,0,10"/>
         <Label Grid.Column="1" Grid.Row="8" Content="Est.Duration(h):" Margin="0,0,0,10"/>
         <Label Grid.Column="1" Grid.Row="9" Content="Start Date:" Margin="0,0,0,10"/>
         <Label Grid.Column="1" Grid.Row="10" Content="Closing Date:" Margin="0,0,0,10"/>
-        <Label Grid.Column="1" Grid.Row="11" Content="(*)State:" Margin="0,0,0,10"/>
+        <Label Grid.Column="1" Grid.Row="11" Content="State:" Margin="0,0,0,10"/>
         <Label Grid.Column="1" Grid.Row="13" Content="Description:" Margin="0,0,0,10"/>
         <Label Grid.Column="1" Grid.Row="12" Content="Programmer Number:" Margin="0,0,0,10"/>
-        <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="7" Margin="0,10,0,10"  Text="{Binding CurrentName}" />
-        <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="8" Margin="0,0,0,10" Text="{Binding CurrentTime}"/>
-        <TextBox Grid.Column="2" Grid.Row="9" Margin="0,0,0,10" Text="{Binding CurrentStartDate}" />
-        <TextBox Grid.Column="4" Grid.Row="9" Margin="0,0,0,10"  Text="{Binding CurrentCloseDate}" />
-        <TextBox TextWrapping="Wrap" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="13" Margin="0,0,0,10" Text="{Binding CurrentDescription}" />
-        <TextBox Grid.Column="1" Grid.Row="11" Margin="126,35,0,10.4"  Text="{Binding CurrentProgrammerId}" Grid.ColumnSpan="4" Grid.RowSpan="2" />
-        <ComboBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="11" Margin="0,0,0,10" ItemsSource="{Binding StatesList}" SelectedItem="{Binding CurrentState}" IsSynchronizedWithCurrentItem="True"/>
-        <wpfTool:DateTimePicker Grid.Column="2"  Grid.ColumnSpan="3" Grid.Row="9" Margin="0,0,0,10" Value="{Binding CurrentStartDate}" />
-        <wpfTool:DateTimePicker Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="10" Margin="0,0,0,10" Value="{Binding CurrentCloseDate}" />
-
+        <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="7" Margin="0,10,0,10"  Text="{Binding SubCurrentName}" />
+        <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="8" Margin="0,0,0,10" Text="{Binding SubCurrentTime}"/>
+        <TextBox Grid.Column="2" Grid.Row="9" Margin="0,0,0,10" Text="{Binding SubCurrentStartDate}" />
+        <TextBox Grid.Column="4" Grid.Row="9" Margin="0,0,0,10"  Text="{Binding SubCurrentCloseDate}" />
+        <TextBox TextWrapping="Wrap" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="13" Margin="0,0,0,10" Text="{Binding SubCurrentDescription}" />
+        <TextBox Grid.Column="1" Grid.Row="11" Margin="126,35,0,10.4"  Text="{Binding SubCurrentProgrammerId}" Grid.ColumnSpan="4" Grid.RowSpan="2" />
+        <ComboBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="11" Margin="0,0,0,10" ItemsSource="{Binding StatesList}" SelectedItem="{Binding SubCurrentState}" IsSynchronizedWithCurrentItem="True"/>
+        <wpfTool:DateTimePicker Grid.Column="2"  Grid.ColumnSpan="3" Grid.Row="9" Margin="0,0,0,10" Value="{Binding SubCurrentStartDate}" />
+        <wpfTool:DateTimePicker Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="10" Margin="0,0,0,10" Value="{Binding SubCurrentCloseDate}" />
 
 
         
+
 
     </Grid>
 </Window>

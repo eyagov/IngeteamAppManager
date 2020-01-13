@@ -11,9 +11,9 @@ namespace IngeteamApp.MODEL
 
     public class TaskCollection : ObservableCollection<Task>
     {
-
-
+        
     }
+
     public class Task
     {
         private int _id;
@@ -42,40 +42,40 @@ namespace IngeteamApp.MODEL
             set { _state = value; }
         }
 
-        private double _time;
-        public double Time
+        private double? _time;
+        public double? Time
         {
             get { return _time; }
             set { _time = value; }
         }
 
-        private DateTime _close;
-        public DateTime Close
+        private DateTime? _close;
+        public DateTime? Close
         {
             get { return _close; }
             set { _close = value; }
         }
-        private DateTime _start;
-        public DateTime Start
+        private DateTime? _start;
+        public DateTime? Start
         {
             get { return _start; }
             set { _start = value; }
         }
 
-        private int _parentId;
-        public int ParentId
+        private int? _parentId;
+        public int? ParentId
         {
             get { return _parentId; }
             set { _parentId = value; }
         }
-        private int _programmerId;
-        public int ProgrammerId
+        private int? _programmerId;
+        public int? ProgrammerId
         {
             get { return _programmerId; }
             set { _programmerId = value; }
         }
 
-        public Task(int id, string name, double time, DateTime start, DateTime close, string state, string description, int parent, int progr)
+        public Task(int id, string name, double? time, DateTime? start, DateTime? close, string state, string description, int? parent, int? progr)
         {
             Id = id;
             Name = name;
@@ -91,7 +91,9 @@ namespace IngeteamApp.MODEL
 
         public override string ToString()
         {
-            return this.Name.Trim() + " Est.Time: " + this.Time.ToString().Trim() + " Start " + this.Start.ToString("dd MMMM yyyy hh:mm:ss tt").Trim() + " Close: " + this.Close.ToString("dd MMMM yyyy hh:mm:ss tt").Trim() + " State: " + this.State.Trim() + " Description: " + this.Description.Trim() + " Parent Task: " + this.ParentId.ToString().Trim() + " Programmer Id: " + this.ProgrammerId.ToString().Trim();
+            string startStr = Start == null ? "Empty" : ((DateTime)Start).ToString("dd MMMM yyyy hh:mm:ss tt");
+            string closeStr = Close == null ? "Empty" : ((DateTime)Close).ToString("dd MMMM yyyy hh:mm:ss tt");
+            return this.Name + " - Est.Time: " + this.Time.ToString() + " Start " + startStr + " Close: " + closeStr + " State: " + this.State + " Description: " + this.Description + " Programmer Number assigned: " + this.ProgrammerId.ToString();
         }
 
 

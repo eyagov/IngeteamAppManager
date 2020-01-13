@@ -38,5 +38,9 @@ namespace IngeteamApp
 
         }
 
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

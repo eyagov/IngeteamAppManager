@@ -15,19 +15,15 @@ using System.Windows.Shapes;
 namespace IngeteamApp.VIEW
 {
     /// <summary>
-    /// Interaction logic for TasksViewer.xaml
+    /// Interaction logic for SubTasksViewer.xaml
     /// </summary>
-    public partial class TasksViewer : Window
+    public partial class SubTasksViewer : Window
     {
-        public TasksViewer()
+        public SubTasksViewer()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
 
     }
 }

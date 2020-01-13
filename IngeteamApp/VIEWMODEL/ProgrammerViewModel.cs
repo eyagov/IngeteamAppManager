@@ -63,6 +63,7 @@ namespace IngeteamApp.VIEWMODEL
             set
             {
                 _currentName = value;
+                if (!string.IsNullOrEmpty(_currentName)) _currentName.Trim();
                 RaisePropertyChanged("CurrentName");
             }
         }
@@ -73,6 +74,7 @@ namespace IngeteamApp.VIEWMODEL
             set
             {
                 _currentSurname = value;
+                if (!string.IsNullOrEmpty(_currentSurname)) _currentSurname.Trim();
                 RaisePropertyChanged("CurrentSurname");
             }
         }
@@ -83,6 +85,7 @@ namespace IngeteamApp.VIEWMODEL
             set
             {
                 _currentEmail = value;
+                if (!string.IsNullOrEmpty(_currentEmail)) _currentEmail.Trim();
                 RaisePropertyChanged("CurrentEmail");
             }
         }
@@ -94,6 +97,7 @@ namespace IngeteamApp.VIEWMODEL
             set
             {
                 _currentResidence = value;
+                if (!string.IsNullOrEmpty(_currentResidence)) _currentResidence.Trim();
                 RaisePropertyChanged("CurrentResidence");
             }
         }
@@ -104,6 +108,7 @@ namespace IngeteamApp.VIEWMODEL
             set
             {
                 _currentNumber = value;
+                if (!string.IsNullOrEmpty(_currentNumber)) _currentNumber.Trim();
                 RaisePropertyChanged("CurrentNumber");
             }
         }
@@ -166,6 +171,7 @@ namespace IngeteamApp.VIEWMODEL
         }
 
 
+
         public ProgrammerViewModel()
         {
 
@@ -202,21 +208,38 @@ namespace IngeteamApp.VIEWMODEL
         }
         private void AddProgrammer()
         {
-            Programmer p = new Programmer(1, CurrentName, CurrentSurname, CurrentEmail, CurrentResidence, CurrentNumber);
-            CurrentProgrammer = null;
-            App.DbConnector.addProgrammer(p);
-            LoadProgrammers();
-            ClearCurrent();
+            //Check first if the NOT NULL fields are null or only blanks
+            if(!string.IsNullOrEmpty(CurrentName) & !string.IsNullOrWhiteSpace(CurrentName) & !string.IsNullOrEmpty(CurrentSurname) & !string.IsNullOrWhiteSpace(CurrentSurname))
+            {
+                Programmer p = new Programmer(1, CurrentName, CurrentSurname, CurrentEmail, CurrentResidence, CurrentNumber);
+                CurrentProgrammer = null;
+                App.DbConnector.addProgrammer(p);
+                LoadProgrammers();
+                ClearCurrent();
+            }
+            else
+            {
+                MessageBox.Show("Fields with * must be fulfilled");
+            }
+
             
         }
 
         private void ModifyCurrent()
         {
-            Programmer p = new Programmer(1, CurrentName, CurrentSurname, CurrentEmail, CurrentResidence, CurrentNumber);
-            App.DbConnector.modifyProgrammer(p, CurrentProgrammer);
-            LoadProgrammers();
-            ClearCurrent();
-            
+            //Check first if the NOT NULL fields are null, empty or only blanks
+            if (!string.IsNullOrEmpty(CurrentName) & !string.IsNullOrWhiteSpace(CurrentName) & !string.IsNullOrEmpty(CurrentSurname) & !string.IsNullOrWhiteSpace(CurrentSurname))
+            {
+                Programmer p = new Programmer(1, CurrentName, CurrentSurname, CurrentEmail, CurrentResidence, CurrentNumber);
+                App.DbConnector.modifyProgrammer(p, CurrentProgrammer);
+                LoadProgrammers();
+                ClearCurrent();
+            }
+            else
+            {
+                MessageBox.Show("Fields with * must be fulfilled");
+            }
+
         }
 
     }

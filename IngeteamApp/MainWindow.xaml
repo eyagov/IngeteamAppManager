@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IngeteamApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Icon="C:\Users\Eduardo\source\repos\IngeteamApp - Copy (2)\IngeteamApp\Resources\IngeIco.ico"
+        Title="IngeteamManagerApp" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width ="20" />
@@ -20,16 +21,25 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="2" Grid.Row="3" Content="Programmers Manager" Name="ProgrammersManager" Click="ProgrammersManager_Click" />
-        <Button Grid.Column="4" Grid.Row="3" Content="Tasks Manager" Name="TasksManager" Margin="0.2,0,0.4,0.2" Click="TasksManager_Click"/>
-
+        <Button Grid.Column="2" Grid.Row="4" Content="Programmers Manager" Name="ProgrammersManager" Click="ProgrammersManager_Click" Width="150" Height="30" />
+        <Button Grid.Column="4" Grid.Row="4" Content="Tasks Manager" Name="TasksManager" Margin="0.2,0,0.4,0.2" Click="TasksManager_Click" Width="150"/>
+        <Button Grid.Column="5" Grid.Row="7" Content="Exit" Name="Exit" Margin="0.2,0,0.4,0.2" Width="100" Height="30" Click="Exit_Click"/>
+        <Image Width="300" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3">
+            <Image.Source>
+                <BitmapImage DecodePixelWidth="300" UriSource="/Resources/IngeLogo.jpg.png"/>
+            </Image.Source>
+        </Image>
 
     </Grid>
 </Window>
