@@ -51,14 +51,14 @@
         <Button Command="{Binding ShowSubTasksCommand}" Grid.Column="6" Grid.Row="2" Content="Show Records"/>
         <Button Command="{Binding RemoveSubTasksCommand}" Grid.Column="6" Grid.Row="4" Content="Delete Selected"/>
         <Button Grid.Column="6"  Grid.Row="10" Content="Add New" Margin="0,10" Command="{Binding AddSubTasksCommand}"/>
-        <Button Grid.Column="6" Grid.Row="9" Content="Clear" Margin="0,10" Command="{Binding SubClearCommand}"/>
+        <Button Grid.Column="6" Grid.Row="9" Content="Clear/Reset" Margin="0,10" Command="{Binding SubClearCommand}"/>
         <Button Grid.Column="6" Grid.Row="11" Content="Modify Current" Margin="0,10" Command="{Binding SubModifyCommand}"/>
         <Button Grid.Column="6" Grid.Row="13" Margin="0,10" Content="Back" Command="{Binding CloseSubTasksCommand}" MaxHeight="20"/>
-        <Label Grid.Column="1" Grid.Row="7" Content="Name:" Margin="0,10,0,10"/>
+        <Label Grid.Column="1" Grid.Row="7" Content="(*)Name:" Margin="0,10,0,10"/>
         <Label Grid.Column="1" Grid.Row="8" Content="Est.Duration(h):" Margin="0,0,0,10"/>
-        <Label Grid.Column="1" Grid.Row="9" Content="Start Date:" Margin="0,0,0,10"/>
-        <Label Grid.Column="1" Grid.Row="10" Content="Closing Date:" Margin="0,0,0,10"/>
-        <Label Grid.Column="1" Grid.Row="11" Content="State:" Margin="0,0,0,10"/>
+        <Label Grid.Column="1" Grid.Row="10" Content="Start Date:" Margin="0,0,0,10"/>
+        <Label Grid.Column="1" Grid.Row="11" Content="Closing Date:" Margin="0,0,0,10"/>
+        <Label Grid.Column="1" Grid.Row="9" Content="State:" Margin="0,0,0,10"/>
         <Label Grid.Column="1" Grid.Row="13" Content="Description:" Margin="0,0,0,10"/>
         <Label Grid.Column="1" Grid.Row="12" Content="Programmer Number:" Margin="0,0,0,10"/>
         <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="7" Margin="0,10,0,10"  Text="{Binding SubCurrentName}" />
@@ -67,9 +67,9 @@
         <TextBox Grid.Column="4" Grid.Row="9" Margin="0,0,0,10"  Text="{Binding SubCurrentCloseDate}" />
         <TextBox TextWrapping="Wrap" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="13" Margin="0,0,0,10" Text="{Binding SubCurrentDescription}" />
         <TextBox Grid.Column="1" Grid.Row="11" Margin="126,35,0,10.4"  Text="{Binding SubCurrentProgrammerId}" Grid.ColumnSpan="4" Grid.RowSpan="2" />
-        <ComboBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="11" Margin="0,0,0,10" ItemsSource="{Binding StatesList}" SelectedItem="{Binding SubCurrentState}" IsSynchronizedWithCurrentItem="True"/>
-        <wpfTool:DateTimePicker Grid.Column="2"  Grid.ColumnSpan="3" Grid.Row="9" Margin="0,0,0,10" Value="{Binding SubCurrentStartDate}" />
-        <wpfTool:DateTimePicker Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="10" Margin="0,0,0,10" Value="{Binding SubCurrentCloseDate}" />
+        <ComboBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="9" Margin="0,0,0,10" ItemsSource="{Binding StatesList}" SelectedItem="{Binding SubCurrentState}" IsSynchronizedWithCurrentItem="True"/>
+        <wpfTool:DateTimePicker Grid.Column="2"  Grid.ColumnSpan="3" Grid.Row="10" Margin="0,0,0,10" Value="{Binding SubCurrentStartDate}" />
+        <wpfTool:DateTimePicker Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="11" Margin="0,0,0,10" Value="{Binding SubCurrentCloseDate}" />
 
 
         
