@@ -13,7 +13,7 @@ namespace IngeteamApp.Connectors
     public class DbConnector
     {
     SqlConnection lCon = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; " +
-    @"AttachDbFilename = C:\Users\Eduardo\source\repos\IngeteamApp - Copy (2)\IngeteamApp\Database1.mdf;" +
+    @"AttachDbFilename = C:\Users\Eduardo\source\repos\IngeteamAppManager\IngeteamApp\Database1.mdf;" +
     "Integrated Security = True; " +
     "User Instance = False");
         public ProgrammerCollection loadProgrammers()

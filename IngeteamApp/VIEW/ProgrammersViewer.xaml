@@ -8,7 +8,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         
         mc:Ignorable="d"
-        Icon="C:\Users\Eduardo\source\repos\IngeteamApp - Copy (2)\IngeteamApp\Resources\IngeIco.ico"
+        Icon="pack://siteoforigin:,,,/Resources/IngeIco.ico"
         
         Title="Programmers Manager" Height="600" Width="800">
     

@@ -93,7 +93,7 @@ namespace IngeteamApp.MODEL
         {
             string startStr = Start == null ? "Empty" : ((DateTime)Start).ToString("dd MMMM yyyy hh:mm:ss tt");
             string closeStr = Close == null ? "Empty" : ((DateTime)Close).ToString("dd MMMM yyyy hh:mm:ss tt");
-            return this.Name + " - Est.Time: " + this.Time.ToString() + " Start " + startStr + " Close: " + closeStr + " State: " + this.State + " Description: " + this.Description + " Programmer Number assigned: " + this.ProgrammerId.ToString();
+            return this.Name + " - Est.Time: " + this.Time.ToString() + " - Start " + startStr + " - Close: " + closeStr + " - State: " + this.State + " - Description: " + this.Description + " - Programmer Number assigned: " + this.ProgrammerId.ToString();
         }
 
 

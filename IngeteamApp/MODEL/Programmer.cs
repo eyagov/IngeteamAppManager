@@ -88,7 +88,7 @@ namespace IngeteamApp.MODEL
         }
         public override string ToString()
         {
-            return "Programmer Number: " + this.Id.ToString() + " - " + this.Name + " " + this.Surname + " " + this.Email + ", Addr: " + this.Residence + ", Tlf: " + this.Number;
+            return "Programmer Number: " + this.Id.ToString() + " -- " + this.Name + " - " + this.Surname + " - " + this.Email + " - Addr: " + this.Residence + " - Tlf: " + this.Number;
         }
     }
 }
