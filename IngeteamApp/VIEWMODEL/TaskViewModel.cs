@@ -294,10 +294,19 @@ namespace IngeteamApp.VIEWMODEL
             {
                 if((CurrentCloseDate == null || CurrentStartDate == null) || (CurrentCloseDate > CurrentStartDate))
                 {
-                    Task t = new Task(1, CurrentName, CurrentTime, CurrentStartDate, CurrentCloseDate, CurrentState, CurrentDescription, CurrentParentId, CurrentProgrammerId);
-                    App.DbConnector.modifyTask(t, CurrentTask);
-                    LoadTasks();
-                    ClearCurrent();
+                    if (App.DbConnector.existsProgrammer(CurrentProgrammerId))
+                    {
+                        
+                        Task t = new Task(1, CurrentName, CurrentTime, CurrentStartDate, CurrentCloseDate, CurrentState, CurrentDescription, CurrentParentId, CurrentProgrammerId);
+                        App.DbConnector.modifyTask(t, CurrentTask);
+                        LoadTasks();
+                        ClearCurrent();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Doesn't exists a Programmer with the selected value.");
+
+                    }
 
                 }
                 else
@@ -316,13 +325,19 @@ namespace IngeteamApp.VIEWMODEL
             //Check first if the NOT NULL fields are null or only blanks
             if (!string.IsNullOrEmpty(CurrentName) & !string.IsNullOrWhiteSpace(CurrentName) & !string.IsNullOrEmpty(CurrentState) & !string.IsNullOrWhiteSpace(CurrentState))
             {
-                if((CurrentCloseDate == null || CurrentStartDate == null) || (CurrentCloseDate > CurrentStartDate))
+                if ((CurrentCloseDate == null || CurrentStartDate == null) || (CurrentCloseDate > CurrentStartDate))
                 {
-                    Task t = new Task(1, CurrentName, CurrentTime, CurrentStartDate, CurrentCloseDate, CurrentState, CurrentDescription, CurrentParentId, CurrentProgrammerId); 
+                    if (App.DbConnector.existsProgrammer(CurrentProgrammerId)) { 
+                    Task t = new Task(1, CurrentName, CurrentTime, CurrentStartDate, CurrentCloseDate, CurrentState, CurrentDescription, CurrentParentId, CurrentProgrammerId);
                     CurrentTask = null;
                     App.DbConnector.addTask(t);
                     LoadTasks();
                     ClearCurrent();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Doesn't exists a Programmer with the selected value.");
+                    }
 
                 }
                 else
@@ -617,10 +632,17 @@ namespace IngeteamApp.VIEWMODEL
             {
                 if ((SubCurrentCloseDate == null || SubCurrentStartDate == null) || (SubCurrentCloseDate > SubCurrentStartDate))
                 {
-                    Task t = new Task(1, SubCurrentName, (double)SubCurrentTime, SubCurrentStartDate, SubCurrentCloseDate, SubCurrentState, SubCurrentDescription, SubCurrentParentId, SubCurrentProgrammerId);
-                    App.DbConnector.modifyTask(t, CurrentSubTask);
-                    LoadSubTasks();
-                    SubClearCurrent();
+                    if (App.DbConnector.existsProgrammer(SubCurrentProgrammerId))
+                    {
+                        Task t = new Task(1, SubCurrentName, (double)SubCurrentTime, SubCurrentStartDate, SubCurrentCloseDate, SubCurrentState, SubCurrentDescription, SubCurrentParentId, SubCurrentProgrammerId);
+                        App.DbConnector.modifyTask(t, CurrentSubTask);
+                        LoadSubTasks();
+                        SubClearCurrent();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Doesn't exists a Programmer with the selected value.");
+                    }
 
                 }
                 else
@@ -642,11 +664,18 @@ namespace IngeteamApp.VIEWMODEL
             {
                 if ((SubCurrentCloseDate == null || SubCurrentStartDate == null) || (SubCurrentCloseDate > SubCurrentStartDate))
                 {
-                    Task t = new Task(1, SubCurrentName, SubCurrentTime, SubCurrentStartDate, SubCurrentCloseDate, SubCurrentState, SubCurrentDescription, SubCurrentParentId, SubCurrentProgrammerId);
-                    CurrentSubTask = null;
-                    App.DbConnector.addSubTask(t,parent);
-                    LoadSubTasks();
-                    SubClearCurrent();
+                    if (App.DbConnector.existsProgrammer(SubCurrentProgrammerId))
+                    {
+                        Task t = new Task(1, SubCurrentName, SubCurrentTime, SubCurrentStartDate, SubCurrentCloseDate, SubCurrentState, SubCurrentDescription, SubCurrentParentId, SubCurrentProgrammerId);
+                        CurrentSubTask = null;
+                        App.DbConnector.addSubTask(t, parent);
+                        LoadSubTasks();
+                        SubClearCurrent();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Doesn't exists a Programmer with the selected value.");
+                    }
 
                 }
                 else

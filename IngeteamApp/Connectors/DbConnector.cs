@@ -244,6 +244,20 @@ namespace IngeteamApp.Connectors
 
         #endregion
 
+        public bool existsProgrammer(int? Id)
+        {
+            
+            SqlCommand lcom = new SqlCommand($"SELECT COUNT(*) FROM Programmer WHERE Id='{Id}'", lCon);
+            lCon.Open();
+            int response = lcom.ExecuteNonQuery();
+            int records = (int)lcom.ExecuteScalar();
+            lCon.Close();
+            
+
+            return records != 0 ? true : false;
+
+        }
+
     }
 
 
